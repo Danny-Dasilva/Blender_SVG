@@ -1,2 +1,3 @@
 Numpy for to remove polygons facing away from camera
 Loop through polygon beers again to see if they are behind another 
+Different angles do backfacing
