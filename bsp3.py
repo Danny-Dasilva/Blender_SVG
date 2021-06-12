@@ -13,8 +13,13 @@ class Node:
         self.backList = []
         self.front = None
         self.back = None
-
-
+# correct sorting front back splitting ./
+#build a tree from polygon plane 
+# viewing angle traversal
+# take 2d polygons 234
+# lines- if they lie on same plane they get combined
+# this gets svg rendered
+#  
 class Tree:
 
 	def __init__(self):
@@ -26,32 +31,32 @@ class Tree:
 		else:
 			self.insertNode(self.root,data)
 
-	def insertNode(self,curNode,data):
+	def insertNode(self,currentNode,data):
 		n = self.pointify(data)
 		
 		checking = self.checkPolygonPosition(polygon)
 
 		if(checking=="front"):
-			if(curNode.front==None):
-				curNode.front = n
-				curNode.frontList.append(n.data)
+			if(currentNode.front==None):
+				currentNode.front = n
+				currentNode.frontList.append(n.data)
 			else:
-				curNode.frontList.append(n.data)
-				self.insertNode(curNode.front,data)
+				currentNode.frontList.append(n.data)
+				self.insertNode(currentNode.front,data)
 		elif(checking=="back"):
-			if(curNode.back==None):
-				curNode.back = n
-				curNode.backList.append(n.data)
+			if(currentNode.back==None):
+				currentNode.back = n
+				currentNode.backList.append(n.data)
 			else:
-				curNode.backList.append(n.data)
-				self.insertNode(curNode.back,data)
+				currentNode.backList.append(n.data)
+				self.insertNode(currentNode.back,data)
 		elif(checking=="intersect"):
-			data1,data2 = self.intersection(curNode,n)
-			self.insertNode(curNode,data1)
-			self.insertNode(curNode,data2)
+			data1,data2 = self.intersection(currentNode,n)
+			self.insertNode(currentNode,data1)
+			self.insertNode(currentNode,data2)
 
 
-	def intersection(self,curNode,n):
+	def intersection(self,currentNode,n):
 		pass
 
 
@@ -92,16 +97,16 @@ class Tree:
 	def find(self,data):
 		return self.findNode(self.root,data)
 
-	def findNode(self,curNode,data):
-		if(curNode is None):
+	def findNode(self,currentNode,data):
+		if(currentNode is None):
 			return "Given Line is Not Found!"
-		elif(curNode.data==data):
-			return curNode
-		elif(curNode.data!=data):
-			if(data in curNode.frontList):
-				self.findNode(curNode.front,data)
-			elif(data in curNode.backList):
-				self.findNode(curNode.back,data)
+		elif(currentNode.data==data):
+			return currentNode
+		elif(currentNode.data!=data):
+			if(data in currentNode.frontList):
+				self.findNode(currentNode.front,data)
+			elif(data in currentNode.backList):
+				self.findNode(currentNode.back,data)
 			else:
 				return "Given Line is Not Found!"
 
@@ -117,11 +122,11 @@ class Tree:
 	def frontMostLine(self):
 		self.frontLine(self.root)
 
-	def frontLine(self,curNode):
-		if(curNode.front is None):
-			print("Front Most Line:",curNode.data)
-		elif(curNode.front is not None):
-			self.frontLine(curNode.front)
+	def frontLine(self,currentNode):
+		if(currentNode.front is None):
+			print("Front Most Line:",currentNode.data)
+		elif(currentNode.front is not None):
+			self.frontLine(currentNode.front)
 
 	def back2front(self,n):
 		if(n is not None):
@@ -132,16 +137,16 @@ class Tree:
 	def print(self):
 		self.printGraph(self.root)
 
-	def printGraph(self,curNode):
-		if(curNode.data is not None):
-			print("_____",curNode.data,"_______")
-			print("Front Line Set:",curNode.frontList)
-			print("Back Line Set:",curNode.backList)
-			print("Same Line Set:",curNode.sameList)
-			if(curNode.front is not None):
-				self.printGraph(curNode.front)
-			if(curNode.back is not None):
-				self.printGraph(curNode.back)
+	def printGraph(self,currentNode):
+		if(currentNode.data is not None):
+			print("_____",currentNode.data,"_______")
+			print("Front Line Set:",currentNode.frontList)
+			print("Back Line Set:",currentNode.backList)
+			print("Same Line Set:",currentNode.sameList)
+			if(currentNode.front is not None):
+				self.printGraph(currentNode.front)
+			if(currentNode.back is not None):
+				self.printGraph(currentNode.back)
 			
 
 
@@ -217,3 +222,42 @@ print("\n")
 print("_____________ FRONT MOST LINE_____________")
 t.frontMostLine()
 print("\n")
+
+
+
+######################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ a
+ b [djfksjdfj]
+c [djfksjdfj]
+
+
+
+
+#if front 
+# if back ^
+
+
+
+#def recursive(node, list):
+#    
+# [list of polys]
+# pick 1 = Node -> [f] [b]
+#
+# Node.front = Node[one of f] [f] call recursive
+# Node.back = Node[one of b] [b] call recursive
