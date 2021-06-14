@@ -236,19 +236,6 @@ print("\n")
 
 
 
-
-
-
-
-
-
- a
- b [djfksjdfj]
-c [djfksjdfj]
-
-
-
-
 #if front 
 # if back ^
 
